@@ -11,7 +11,7 @@ class App extends React.Component {
           name={student.name} 
           fruit={student.favoriteFruit}
           imgURL={student.imgURL}
-          idx={idx}
+          key={idx}
         />
         )}
       </main>
