@@ -1,5 +1,7 @@
 import React from "react";
 import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col';
+import "./Student.css"
 
 class Student extends React.Component {
   constructor(props) {
@@ -8,6 +10,7 @@ class Student extends React.Component {
       clickedFavorite: false,
       numOfFaves: 0
     };
+
   }
 
   handleFavorite = () => {
@@ -17,20 +20,24 @@ class Student extends React.Component {
     })
   };
 
+  fillAndShowModal = () =>{
+    this.props.handleShowModal(this.props.name, this.props.imgURL);
+  }
+
 
   render() {
     return (
-      <div className="student" >
-        <Card style={{ width: '18rem' }}>
+      <Col>
+        <Card onClick={this.props.addHorns}>
           <Card.Title as="h2" >{this.props.name}</Card.Title>
-          <Card.Text>Favorite Fruit: {this.props.fruit}</Card.Text>
+          <Card.Text onClick={this.fillAndShowModal}>Favorite Fruit: {this.props.fruit}</Card.Text>
           <Card.Img src={this.props.imgURL}
             alt={this.props.favoriteFruit}
             onClick={this.handleFavorite}
           />
           {this.state.clickedFavorite ? <Card.Text>Favorited: ❤️{this.state.numOfFaves}</Card.Text> : <Card.Text>Favorited: 🖤</Card.Text>}
         </Card>
-      </div>
+      </Col>
     )
   }
 };
